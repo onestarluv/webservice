@@ -1,0 +1,71 @@
+### 1. 게시글 등록 - 201
+POST http://127.0.0.1:3000/api/posts
+Content-Type: application/json
+
+{
+  "title": "첫 번째 게시글",
+  "content": "웹서비스설계 과제입니다."
+}
+
+### 2. 댓글 등록 - 201
+POST http://127.0.0.1:3000/api/posts/1/comments
+Content-Type: application/json
+
+{
+  "content": "첫 번째 댓글입니다."
+}
+
+### 3. 게시글 목록 조회 - 200
+GET http://127.0.0.1:3000/api/posts
+
+### 3-1. 게시글 목록 검색 - 200
+GET http://127.0.0.1:3000/api/posts?keyword=과제
+
+### 4. 게시글 단건 조회 - 200
+GET http://127.0.0.1:3000/api/posts/1
+
+### 5. 게시글 전체 교체 - 200
+PUT http://127.0.0.1:3000/api/posts/1
+Content-Type: application/json
+
+{
+  "title": "수정된 게시글",
+  "content": "수정된 본문입니다."
+}
+
+### 6. 댓글 수정 - 200
+PUT http://127.0.0.1:3000/api/posts/1/comments/1
+Content-Type: application/json
+
+{
+  "content": "수정된 댓글입니다."
+}
+
+### 7. 댓글 삭제 - 200
+DELETE http://127.0.0.1:3000/api/posts/1/comments/1
+
+### 8. 게시글 삭제 - 200
+DELETE http://127.0.0.1:3000/api/posts/1
+
+### 400 - 입력 검증 오류
+POST http://127.0.0.1:3000/api/posts
+Content-Type: application/json
+
+{
+  "title": "",
+  "content": "본문"
+}
+
+### 400 - ID 형식 오류
+GET http://127.0.0.1:3000/api/posts/abc
+
+### 404 - 게시글 없음
+GET http://127.0.0.1:3000/api/posts/9999
+
+### 500 - 시뮬레이션
+GET http://127.0.0.1:3000/api/posts
+X-Simulate-Error: 500
+
+### 503 - 시뮬레이션
+GET http://127.0.0.1:3000/api/posts
+X-Simulate-Error: 503
